@@ -6,7 +6,7 @@ ENV ES_SHA512 0eb4d32f252c94fbb5dd25cb90e553c1b81d2f88a284d2e2100c5daa2ee0a1d327
 
 RUN Write-Host ('Downloading {0} ...' -f $env:ES_URL); \
 	Invoke-WebRequest -Uri $env:ES_URL -OutFile 'elasticsearch.zip'; \
-	Write-Host ('Verifying sha512 ({0}) ...' -f $env:ES_SHA256); \
+	Write-Host ('Verifying sha512 ({0}) ...' -f $env:ES_SHA512); \
 	if ((Get-FileHash elasticsearch.zip -Algorithm sha512).Hash -ne $env:ES_SHA512) { \
 		Write-Host 'FAILED!'; \
 		exit 1; \
