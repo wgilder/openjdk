@@ -44,5 +44,4 @@ RUN Write-Host ('Downloading {0} ...' -f $env:JAVA_URL); \
 	\
 	Write-Host 'Complete.'
 
-CMD ["powershell"]
 CMD ["jshell"]
