@@ -15,9 +15,9 @@ COPY "./scripts/Setup.*" ./
 
 RUN Invoke-WebRequest -Uri $env:MSSQL_URI -OutFile "mssql-server.exe"; \
     Start-Process -FilePath "\"mssql-server.exe\"" -NoNewWindow -Wait -ArgumentList \
-        "\"/ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /QUIET /INSTALLPATH=$env:MSSQL_DATADIR /MEDIAPATH=$env:MSSQL_TMP /HIDEPROGRESSBAR\"";
+        "\"/ACTION=Install /IACCEPTSQLSERVERLICENSETERMS /QUIET /INSTALLPATH=$env:MSSQL_DATADIR /MEDIAPATH=$env:MSSQL_TMP /HIDEPROGRESSBAR\""; \
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted;
 
-RUN Set-ExecutionPolicy -ExecutionPolicy Unrestricted;
 RUN Invoke-Sqlcmd -InputFile "Setup.sql"; \
     .\\Setup.ps1
 
