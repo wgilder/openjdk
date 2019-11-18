@@ -2,9 +2,6 @@ FROM mcr.microsoft.com/windows:1903
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-# SQL Server Express
-#ENV MSSQL_URI https://go.microsoft.com/fwlink/?linkid=866658
-
 # SQL Server Developer
 ENV MSSQL_URI https://go.microsoft.com/fwlink/?linkid=866662
 ENV MSSQL_DATADIR C:\\sqldata
@@ -14,7 +11,7 @@ RUN mkdir $env:MSSQL_TMP; \
     mkdir $env:MSSQL_DATADIR;
 
 WORKDIR ${MSSQL_TMP}
-COPY "Setup.*" ./
+COPY "./scripts/Setup.*" ./
 
 RUN Invoke-WebRequest -Uri $env:MSSQL_URI -OutFile "mssql-server.exe"; \
     Start-Process -FilePath "\"mssql-server.exe\"" -NoNewWindow -Wait -ArgumentList \

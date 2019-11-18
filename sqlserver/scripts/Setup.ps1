@@ -1,3 +1,5 @@
+# This script enables TCP and named pipe protocols, allowing non-remote connections to the dB
+
 Import-Module "sqlps"
 
 $smo = 'Microsoft.SqlServer.Management.Smo.'  
